@@ -104,80 +104,11 @@ public abstract class ShapeCalc extends CalculatorWindow {
 		return p1;
 	}
 
-	public void setP1(GBPanel p1) {
-		this.p1 = p1;
-	}
-
-	public GBPanel getP2() {
-		return p2;
-	}
-
-	public void setP2(GBPanel p2) {
-		this.p2 = p2;
-	}
-
-	public GBPanel getP3() {
-		return p3;
-	}
-
-	public void setP3(GBPanel p3) {
-		this.p3 = p3;
-	}
-
 	public GBPanel getP4() {
 		return p4;
-	}
-
-	public void setP4(GBPanel p4) {
-		this.p4 = p4;
-	}
-
-	public GBPanel getP5() {
-		return p5;
-	}
-
-	public void setP5(GBPanel p5) {
-		this.p5 = p5;
-	}
-
-	public JButton getExit() {
-		return exit;
-	}
-
-	public void setExit(JButton exit) {
-		this.exit = exit;
-	}
-
-	public JTextField[] getAnswers() {
-		return answers;
-	}
-
-	public void setAnswers(JTextField[] answers) {
-		this.answers = answers;
-	}
-
-	public Timer getT1() {
-		return t1;
-	}
-
-	public void setT1(Timer t1) {
-		this.t1 = t1;
 	}
 
 	public KeyListener getKey() {
 		return key;
 	}
-
-	public void setKey(KeyListener key) {
-		this.key = key;
-	}
-
-	public void setPerAnswer(JTextField perAnswer) {
-		this.perAnswer = perAnswer;
-	}
-
-	public void setAreaAnswer(JTextField areaAnswer) {
-		this.areaAnswer = areaAnswer;
-	}
-
 }

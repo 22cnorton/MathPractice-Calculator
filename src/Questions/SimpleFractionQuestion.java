@@ -11,12 +11,13 @@ public class SimpleFractionQuestion extends Question {
 	}
 
 	@Override
-	Object calcSolution() {
+	protected Object calcSolution() {
 		return f1.simplify();
 	}
 
-	
+
+	@Override
 	public String toString() {
-		return "Simplify "+f1.toString();  
+		return "Simplify "+f1.toString();
 	}
 }

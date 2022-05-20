@@ -10,7 +10,7 @@ public class PrimeQuestion extends Question {
 	}
 
 	@Override
-	Object calcSolution() {
+	protected Object calcSolution() {
 		int num = Math.abs(this.num);
 		if (num == 1 || num == 0)
 			return false;

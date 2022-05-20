@@ -15,11 +15,6 @@ public class TriangleQuestion extends ShapeQuestion {
 		this.s1 = s1;
 		this.s2 = s2;
 		this.s3 = s3;
-
-//	    a + b > c
-//	    a + c > b
-//	    b + c > a
-
 	}
 
 	private double getHeight() {

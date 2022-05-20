@@ -1,4 +1,5 @@
 package Questions;
+
 import java.text.DecimalFormat;
 
 public class ChangeQuestion extends Question {
@@ -38,15 +39,8 @@ public class ChangeQuestion extends Question {
 			diffC = 100 - (payC - costC);
 		}
 
-//		ChangeCalc.getCoins(diffD + diffC / 100.0);
-
 		return diffD + diffC / 100.0;
 	}
-
-	/*
-	 * @Override public boolean answerEquals(Object o) { System.out.println(o);
-	 * return o.equals(getSolution()); }
-	 */
 
 	@Override
 	public String toString() {
@@ -55,5 +49,4 @@ public class ChangeQuestion extends Question {
 				+ " and the payment was " + payD + "." + ((payC < 10) ? "0" + payC : Integer.toString(payC))
 				+ ". What is the change?";
 	}
-
 }

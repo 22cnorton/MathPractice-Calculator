@@ -1,4 +1,5 @@
 package CalculatorWindows;
+
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
@@ -35,14 +36,13 @@ public class NumbersCalc extends CalculatorWindow {
 	private JTextField answer = p2.addTextField("2", GridBagConstraints.CENTER, 1, 1, 1, 1),
 			num1 = p1.addTextField("1", GridBagConstraints.CENTER, 1, 1, 1, 1),
 			num2 = p1.addTextField("1", GridBagConstraints.CENTER, 1, 3, 1, 1);
-	private JComboBox<Character> sign =  p1.addComboBox(GridBagConstraints.CENTER, 1, 2, 1, 1);
+	private JComboBox<Character> sign = p1.addComboBox(GridBagConstraints.CENTER, 1, 2, 1, 1);
 	{
 		sign.addItem('+');
 		sign.addItem('-');
 		sign.addItem('*');
 		sign.addItem('÷');
 	}
-//	NumParse tmp = (i,j,c) ->
 
 	private KeyListener key = new KeyAdapter() {
 		public void keyPressed(KeyEvent e) {
@@ -54,13 +54,9 @@ public class NumbersCalc extends CalculatorWindow {
 	NumParse asStr = () -> {
 		try {
 			char op = (char) sign.getSelectedItem();
-//		try {
 			int num1 = Integer.parseInt(this.num1.getText());
 			int num2 = Integer.parseInt(this.num2.getText());
 
-//		} catch (NumberFormatException nfe) {
-//			answer.setText("Invalid Inputs");
-//		}
 			double out;
 			switch (op) {
 			case '-':
@@ -113,15 +109,6 @@ public class NumbersCalc extends CalculatorWindow {
 			dispose();
 		}
 	}
-
-	/*
-	 * public String mathAsString(int num1, int num2, char op) { double out; switch
-	 * (op) { case '-': out = num1 - num2; break; case '*': out = num1 * num2;
-	 * break; case '÷': out = (double) num1 / num2; break; default: out = num1 +
-	 * num2; } DecimalFormat decForm = new DecimalFormat("#,##0.#####");
-	 *
-	 * return decForm.format(out); }
-	 */
 
 	public NumbersCalc(JFrame arg0) {
 		super(arg0, "Number Calculator");

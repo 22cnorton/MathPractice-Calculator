@@ -1,4 +1,5 @@
 package Questions;
+
 import java.util.*;
 
 public class SequenceQuestion extends Question {
@@ -11,7 +12,6 @@ public class SequenceQuestion extends Question {
 			seq.add((i * space) + start);
 		}
 		spot = (int) (Math.random() * seq.size());
-//		System.out.println(seq);
 	}
 
 	public ArrayList<Integer> getSeq() {
@@ -47,7 +47,7 @@ public class SequenceQuestion extends Question {
 	}
 
 	@Override
-	Object calcSolution() {
+	protected Object calcSolution() {
 		return (double) seq.get(spot);
 	}
 }

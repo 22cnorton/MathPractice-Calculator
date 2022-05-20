@@ -9,80 +9,10 @@ import java.util.HashMap;
 import java.util.Properties;
 
 public class Settings {
-	/*
-	 * private static int lowerBound, upperBound, qNum, numType; private static char
-	 * type; private static boolean firstLarger, fractionAnswer;
-	 */
-
-//	public static HashMap<Integer, Integer> diffScale = new HashMap<Integer, Integer>(); 
 
 	private static HashMap<String, String> settings;
 	private static boolean devMode = false;
 
-	// added at the beginning of week 2, makes it easier to check against what the
-	// problem type is
-	/*
-	 * private static final int[] nums; static { nums = new int[] { 0, 1, 2, 3, 4,
-	 * 5, 6, 7, 8, 9, 10, 11, 12, 13 }; }
-	 */
-	/*
-	 * public static final int NORM = 0, MONEY = 1, FRACTION = 2, COINS = 3, TIME =
-	 * 4, SEQUENCE = 5, SIMPLIFY_FRACTION = 6, DATE = 7, RECTANGLE = 8, CIRCLE = 9,
-	 * TRIANGLE = 10, TRAPEZOID = 11, PERCENT = 12, CHANGE = 13;
-	 * 
-	 * private static final String[] typeNames = { "Numbers", "Money", "Fraction",
-	 * "Coins", "Time", "Sequence", "Simplify Fraction", "Date", "Rectangle",
-	 * "Circle", "Triangle", "Trapezoid", "Percent", "Change" };
-	 */
-
-	/*
-	 * private static final HashMap<Integer, String> val; static { val = new
-	 * HashMap<>(); for (int i = 0; i < ProblemTypes.values().length; i++) {
-	 * val.put(ProblemTypes.values()[i].val, ProblemTypes.values()[i].name); //
-	 * System.out.println(ProblemTypes.values()[i].name); }
-	 * 
-	 * 
-	 * val.put("Numbers", 0); val.put("Money", 1); val.put("Fraction", 2);
-	 * val.put("Coins", 3); val.put("Time", 4); val.put("Sequence", 5);
-	 * val.put("Simplify Fraction", 6);
-	 * 
-	 * // System.out.println(val); }
-	 */
-
-	/*
-	 * public static String getType(int key) { return
-	 * ProblemTypes.values()[key].name; }
-	 * 
-	 * public static int getNumOfTypes() { return ProblemTypes.values().length; }
-	 */
-
-	/*
-	 * public Settings() { lowerBound = 1; upperBound = 10; type = '+'; qNum = 10;
-	 * numType = 0; firstLarger = true; fractionAnswer = false; }
-	 * 
-	 * public Settings(int lB, int uB, char t, int qN, int numType) { lowerBound =
-	 * lB; upperBound = uB; type = t; qNum = qN; Settings.numType = numType;
-	 * firstLarger = true; fractionAnswer = false; }
-	 * 
-	 * static Object getDoub() { return 4.5; }
-	 */
-
-	/*
-	 * static void readFiles() { settings = new HashMap<>(); try { // var t=10;
-	 * FileInputStream fis = new FileInputStream("settings.properties"); Properties
-	 * prop = new Properties(); prop.load(fis); fis.close(); settings.put("Op",
-	 * prop.getProperty("Op")); settings.put("NumType",
-	 * prop.getProperty("NumType")); settings.put("Reps", prop.getProperty("Reps"));
-	 * settings.put("MinBound", prop.getProperty("MinBound"));
-	 * settings.put("MaxBound", prop.getProperty("MaxBound"));
-	 * settings.put("FirstLarger", prop.getProperty("FirstLarger"));
-	 * settings.put("FractionAnswer", prop.getProperty("FractionAnswer"));
-	 * 
-	 * } catch (FileNotFoundException fnfe) { fnfe.printStackTrace(); } catch
-	 * (IOException ioe) { ioe.printStackTrace(); }
-	 * 
-	 * }
-	 */
 	private static final String[] NAMES;
 	static {
 		NAMES = new String[] { "MinBound", "MaxBound", "Reps", "NumType", "Op", "FirstLarger", "FractionAnswer",
@@ -133,15 +63,6 @@ public class Settings {
 				prop.put(str, "");
 			}
 		}
-//		prop.put("MinBound", settings.get("MinBound"));
-//		prop.put("MaxBound", settings.get("MaxBound"));
-//		prop.put("Reps", settings.get("Reps"));
-//		prop.put("NumType", settings.get("NumType"));
-//		prop.put("Op", settings.get("Op"));
-//		prop.put("FirstLarger", settings.get("FirstLarger"));
-//		prop.put("FractionAnswer", settings.get("FractionAnswer"));
-//		prop.put("SlowTxt", settings.get("SlowTxt"));
-//		prop.put("Timed", settings.get("Timed"));
 
 		try {
 			FileOutputStream outputStrem = new FileOutputStream(SETTINGS_FILE);
@@ -202,11 +123,6 @@ public class Settings {
 		Settings.settings = settings;
 	}
 
-	/*
-	 * static void setAll(int lB, int uB, char t, int qN, int numType) { lowerBound
-	 * = lB; upperBound = uB; type = t; qNum = qN; Settings.numType = numType;
-	 * firstLarger = true; fractionAnswer = false; }
-	 */
 
 	public static ProblemTypes getNumType() {
 		try {
@@ -217,9 +133,6 @@ public class Settings {
 		}
 	}
 
-//	static ProblemTypes getProblemType() {
-//		return ProblemTypes.values()[1];
-//	}
 
 	static void setNumType(ProblemTypes numType) {
 		settings.put("NumType", numType.toString());

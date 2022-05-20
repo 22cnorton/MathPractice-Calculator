@@ -75,22 +75,12 @@ public class SettingsWindow extends GBDialog {
 
 	private ButtonGroup bgNumType = new ButtonGroup();
 
-	/*
-	 * private JRadioButton rNorm, rMoney, rFraction, rCoin, rTime, rSeq, rSimpFrac,
-	 * rDate, rRectangle, rCircle, rTriangle, rPercent, rTrapezoid, rChange;
-	 */
-
 	private JRadioButton[] radioButtons = new JRadioButton[ProblemTypes.values().length];
-	/*
-	 * { rNorm, rMoney, rFraction, rCoin, rTime, rSeq, rSimpFrac, rDate, rRectangle,
-	 * rCircle, rTriangle, rPercent, rTrapezoid, rChange };
-	 */
 
 	private JButton enter = p2.addButton("Enter", 1, 1, 1, 1), exit = p2.addButton("Cancel", 2, 1, 2, 1),
 			reset = p2.addButton("Reset", 1, 2, 1, 1);
 
 	private JFrame arg0;
-//	private Hashtable<Integer, Integer> dic=new Hashtable<Integer, Integer>();
 
 	private int lowerMinBound, upperMaxBound;
 
@@ -99,22 +89,6 @@ public class SettingsWindow extends GBDialog {
 		if (buttonObj == enter) {
 			try {
 				int lB = ((int) lowerBoundInput.getValue()), uB = ((int) upperBoundInput.getValue());
-
-				/*
-				 * if (uB < lB && (!rSeq.isSelected() && !rSimpFrac.isSelected())) { throw new
-				 * UnsupportedOperationException("Lower Bound must be smaller than Upper Bound"
-				 * ); }
-				 *
-				 * if (rSimpFrac.isSelected() && lB <= 1) throw new
-				 * NumberFormatException("Highest Mult Pos"); else if (rCoin.isSelected() && (lB
-				 * < 1 || uB > 50)) throw new NumberFormatException("Coin limits"); else if
-				 * (rChange.isSelected() && lB < 1) throw new
-				 * NumberFormatException("Change Limits"); else if (rTime.isSelected()) {
-				 * Settings.setLowerBound(1); Settings.setUpperBound(12); } else if
-				 * ((rRectangle.isSelected() || rCircle.isSelected() || rTrapezoid.isSelected()
-				 * || rTriangle.isSelected()) && lB <= 0) { throw new
-				 * NumberFormatException("Shapes need positive numbers"); } else { }
-				 */
 
 				Settings.setLowerBound(lB);
 				Settings.setUpperBound(uB);
@@ -148,30 +122,11 @@ public class SettingsWindow extends GBDialog {
 						break;
 					}
 				}
-				/*
-				 * if (rNorm.isSelected()) Settings.setNumType(0); else if (rMoney.isSelected())
-				 * Settings.setNumType(1); else if (rFraction.isSelected())
-				 * Settings.setNumType(2); else if (rCoin.isSelected()) Settings.setNumType(3);
-				 * else if (rTime.isSelected()) Settings.setNumType(4); else if
-				 * (rSeq.isSelected()) Settings.setNumType(5); else if (rSimpFrac.isSelected())
-				 * Settings.setNumType(6); else if (rDate.isSelected()) Settings.setNumType(7);
-				 * else if (rRectangle.isSelected()) Settings.setNumType(8); else if
-				 * (rCircle.isSelected()) Settings.setNumType(9); else if
-				 * (rTriangle.isSelected()) Settings.setNumType(10); else if
-				 * (rPercent.isSelected()) Settings.setNumType(11); else if
-				 * (rTrapezoid.isSelected()) Settings.setNumType(12); else if
-				 * (rChange.isSelected()) Settings.setNumType(13);
-				 */
 
-//				s.setType((char) typeInput.getSelectedItem());
-//				System.out.println(s);
 				Settings.setFirstLarger(firstLargerInput.isSelected());
 				Settings.setFractionAnswer(fractionAnswer.isSelected());
 				Settings.setTimed(timedQuestion.isSelected());
-//				System.out.println(timedQSpeed.getValue());
 				Settings.setTimedSpeed(timedQSpeed.getValue());
-//				System.out.println(Settings.isFractionAnswer());
-//				System.out.println(Settings.isFirstLarger());
 				dispose();
 			} catch (NumberFormatException e) {
 				if (e.getMessage().equals("Non Negative"))
@@ -212,7 +167,6 @@ public class SettingsWindow extends GBDialog {
 					out.writeObject(0);
 					out.close();
 					fileOut.close();
-//				System.out.printf("Serialized data is saved in /tmp/score.ser");
 				} catch (IOException i) {
 					i.printStackTrace();
 				}
@@ -283,9 +237,6 @@ public class SettingsWindow extends GBDialog {
 		lowerMinBound = Integer.MIN_VALUE + 1;
 		upperMaxBound = Integer.MAX_VALUE - 1;
 
-//		Settings.readFiles();
-//		System.out.println(Settings.isFractionAnswer());
-//		System.out.println(Settings.isFirstLarger());
 		fractionAnswer.setSelected(Settings.isFractionAnswer());
 		firstLargerInput.setSelected(Settings.isFirstLarger());
 		fractionAnswerLabel.setEnabled(false);
@@ -338,17 +289,12 @@ public class SettingsWindow extends GBDialog {
 			break;
 		}
 		firstLargerInput.setForeground(Color.white);
-//		typeInput.setSelectedItem(Settings.getType());
-
-//		labels[5].setEnabled(false);
-//		fractionAnswer.setEnabled(false);
 
 		firstLargerInput.setSelected(Settings.isFirstLarger());
 
 		upperBoundInput.setValue(Settings.getUpperBound());
 		lowerBoundInput.setValue(Settings.getLowerBound());
 
-//!rSeq.isSelected() && !rSimpFrac.isSelected()
 		lowerBoundInput.addChangeListener(new ChangeListener() {
 
 			@Override
@@ -392,55 +338,8 @@ public class SettingsWindow extends GBDialog {
 					s.setValue(s.getNextValue());
 				else if (val > 50)
 					s.setValue(s.getPreviousValue());
-//				s.ena
-//				System.out.println(val);
 			}
 		});
-		/*
-		 * switch (Settings.getNumType()) { case FRACTION: //
-		 * upperBoundInput.setValue(10); fractionAnswerLabel.setEnabled(true);
-		 * fractionAnswer.setEnabled(true);
-		 * firstLargerLabel.setText("Denominator is Always Larger"); break; case TIME:
-		 * lowerBoundLabel.setEnabled(false); upperBoundLabel.setEnabled(false);
-		 * lowerBoundInput.setEnabled(false); upperBoundInput.setEnabled(false);
-		 * typeInput.setEnabled(false); typeLabel.setEnabled(false);
-		 * firstLargerInput.setEnabled(false); firstLargerLabel.setEnabled(false);
-		 * break; case SEQUENCE: typeInput.setEnabled(false);
-		 * typeLabel.setEnabled(false); firstLargerInput.setEnabled(false);
-		 * firstLargerLabel.setEnabled(false); lowerBoundLabel.setText("Counting by");
-		 * break; case DATE: lowerBoundLabel.setEnabled(false);
-		 * upperBoundLabel.setEnabled(false); lowerBoundInput.setEnabled(false);
-		 * upperBoundInput.setEnabled(false); // typeInput.setEnabled(false); //
-		 * typeLabel.setEnabled(false); typeInput.removeItem('*');
-		 * typeInput.removeItem('÷'); firstLargerInput.setEnabled(false);
-		 * firstLargerLabel.setEnabled(false); fractionAnswer.setEnabled(false);
-		 * fractionAnswerLabel.setEnabled(false); break; case RECTANGLE: case CIRCLE:
-		 * case TRIANGLE: case TRAPEZOID: firstLargerLabel.setText("Area/Perimeter");
-		 * lowerMinBound = 0; if (Settings.isFirstLarger())
-		 * firstLargerInput.setText("Area"); else firstLargerInput.setText("Perimeter");
-		 * typeInput.setEnabled(false); typeLabel.setEnabled(false);
-		 * fractionAnswer.setSelected(false); break; case COINS: upperMaxBound = 50;
-		 * case CHANGE: // lowerBoundLabel.setText("Min number of coins"); //
-		 * upperBoundLabel.setText("Max number of coins"); typeInput.setEnabled(false);
-		 * typeLabel.setEnabled(false); firstLargerInput.setEnabled(false);
-		 * firstLargerLabel.setEnabled(false); lowerMinBound = 1; // if
-		 * (Settings.getNumType() == ProblemTypes.COINS) validate(); break; case
-		 * PERCENT: firstLargerInput.setEnabled(false);
-		 * firstLargerLabel.setEnabled(false); typeInput.setEnabled(false);
-		 * typeLabel.setEnabled(false); break; case SIMPLIFY_FRACTION:
-		 * lowerBoundLabel.setText("Highest Multiple"); typeInput.setEnabled(false);
-		 * typeLabel.setEnabled(false); firstLargerInput.setEnabled(false);
-		 * firstLargerLabel.setEnabled(false); // if (Settings.getNumType() !=
-		 * ProblemTypes.SIMPLIFY_FRACTION) // lowerBoundInput.setValue(5); lowerMinBound
-		 * = 1; validate(); break; default: // upperBoundInput.setText("10");
-		 * lowerMinBound = Integer.MIN_VALUE + 1; upperMaxBound = Integer.MAX_VALUE - 1;
-		 * firstLargerInput.setSelected(Settings.isFirstLarger());
-		 *
-		 * if (Settings.getType() == '÷' || Settings.getType() == 'r') {
-		 * fractionAnswerLabel.setEnabled(true); fractionAnswer.setEnabled(true); } else
-		 * { fractionAnswerLabel.setEnabled(false); fractionAnswer.setEnabled(false); }
-		 * break; }
-		 */
 
 		for (JTextField l : labels) {
 			l.setBackground(getContentPane().getBackground());
@@ -455,22 +354,6 @@ public class SettingsWindow extends GBDialog {
 			bgNumType.add(r);
 			r.setForeground(Color.white);
 		}
-
-		/*
-		 * switch (Settings.getNumType()) { case Settings.NORM: rNorm.setSelected(true);
-		 * break; case Settings.MONEY: rMoney.setSelected(true); break; case
-		 * Settings.FRACTION: rFraction.setSelected(true); break; case Settings.COINS:
-		 * rCoin.setSelected(true); break; case Settings.TIME: rTime.setSelected(true);
-		 * break; case Settings.SEQUENCE: rSeq.setSelected(true); break; case
-		 * Settings.SIMPLIFY_FRACTION: rSimpFrac.setSelected(true); break; case
-		 * Settings.DATE: rDate.setSelected(true); break; case Settings.RECTANGLE:
-		 * rRectangle.setSelected(true); break; case Settings.CIRCLE:
-		 * rCircle.setSelected(true); break; case Settings.TRIANGLE:
-		 * rTriangle.setSelected(true); break; case Settings.PERCENT:
-		 * rPercent.setSelected(true); break; case Settings.TRAPEZOID:
-		 * rTrapezoid.setSelected(true); break; case Settings.CHANGE:
-		 * rChange.setSelected(true); break; }
-		 */
 
 		radioButtons[ProblemTypes.PERCENT.ordinal()].addItemListener(new ItemListener() {
 
@@ -818,22 +701,6 @@ public class SettingsWindow extends GBDialog {
 			}
 		};
 
-		/*
-		 * ((JSpinner.DefaultEditor)
-		 * lowerBoundInput.getEditor()).getTextField().setHorizontalAlignment(JTextField
-		 * .LEFT); ((JSpinner.DefaultEditor)
-		 * lowerBoundInput.getEditor()).getTextField().setEditable(false);
-		 *
-		 * ((JSpinner.DefaultEditor)
-		 * upperBoundInput.getEditor()).getTextField().setHorizontalAlignment(JTextField
-		 * .LEFT); ((JSpinner.DefaultEditor)
-		 * upperBoundInput.getEditor()).getTextField().setEditable(false);
-		 *
-		 * ((JSpinner.DefaultEditor)
-		 * repsInput.getEditor()).getTextField().setHorizontalAlignment(JTextField.LEFT)
-		 * ; ((JSpinner.DefaultEditor)
-		 * repsInput.getEditor()).getTextField().setEditable(false);
-		 */
 		timedQuestion.addChangeListener(new ChangeListener() {
 
 			@Override
@@ -843,17 +710,6 @@ public class SettingsWindow extends GBDialog {
 			}
 		});
 
-//		lowerBoundInput.setValue(Settings.getLowerBound());
-//		upperBoundInput.setValue(Settings.getUpperBound());
-//		int lowerVal = Settings.getLowerBound();
-//		if ((int) lowerBoundInput.getValue() < lowerMinBound)
-//			lowerVal = lowerMinBound;
-//		System.out.println(Settings.getLowerBound());
-
-//		int upperVal = Settings.getUpperBound();
-//		if ((int) upperBoundInput.getValue() > upperMaxBound)
-//			upperVal = upperMaxBound;
-
 		repsInput.setValue(Settings.getqNum());
 		for (JComponent j : comps) {
 			j.addKeyListener(keys);
@@ -861,9 +717,6 @@ public class SettingsWindow extends GBDialog {
 		for (JRadioButton j : radioButtons) {
 			j.addKeyListener(keys);
 		}
-//		((JSpinner.DefaultEditor) repsInput.getEditor()).getTextField().setFocusable(false);
-//		repsInput.set
-//		((DefaultEditor) repsInput.getEditor()).getTextField().setEditable(false);
 		for (JSpinner j : spinners) {
 			((JSpinner.DefaultEditor) j.getEditor()).getTextField().setHorizontalAlignment(SwingConstants.LEFT);
 			((JSpinner.DefaultEditor) j.getEditor()).getTextField().addKeyListener(keys);
@@ -878,8 +731,6 @@ public class SettingsWindow extends GBDialog {
 		enter.addKeyListener(keys);
 		exit.addKeyListener(keys);
 		reset.addKeyListener(keys);
-
-		// has to be after setting selected button otherwise lower bound is set to -1
 
 	}
 
@@ -904,7 +755,7 @@ public class SettingsWindow extends GBDialog {
 				int pos = (i + (k * (bL + 1) / NUM_ROWS));
 				if (pos >= bL)
 					break;
-				radioButtons[pos] = p3.addRadioButton(StringUtils.capitalize(ProblemTypes.values()[pos].toString()),
+				radioButtons[pos] = p3.addRadioButton(StringUtils.properCase(ProblemTypes.values()[pos].toString()),
 						i + 1, k + 1, 1, 1);
 				int scale = ProblemTypes.values()[pos].scale;
 				if (scale > ((int) (score / (scale / 1.5)) + 30) / 30) {

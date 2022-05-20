@@ -27,14 +27,6 @@ public class QuestionGenerator {
 	public static ChangeQuestion nextChangeQuestion() {
 		int cost = new Random().nextInt(Math.abs(Settings.getUpperBound() - Settings.getLowerBound()))
 				+ Settings.getLowerBound();
-//		cost = 30;
-//		final int[] VALID_PAYMENTS = { 5,10 };
-
-		// int payment = (cost % 10 >= 5) ? (cost / 10 + 1) * 10 : (cost / 10) * 10 + 5;
-//		int nextPay = 0;
-//		while (nextPay < cost) {
-//			nextPay += BILLS[(int) (Math.random() * BILLS.length)];
-//		}
 		/*
 		 * causes the payment amount to vary
 		 */
@@ -57,7 +49,6 @@ public class QuestionGenerator {
 				payment += 10;
 		}
 
-//		return new ChangeQuestion(10, 0, 5, 98);
 		return new ChangeQuestion(payment, 0, cost, new Random().nextInt(99));
 	}
 
@@ -90,44 +81,6 @@ public class QuestionGenerator {
 				break;
 			}
 		}
-//		System.out.println(c.size());
-
-//		int q = r.nextInt(range / 4 + 1);// split in four, one segment for each coin type
-//		for (int i = 0; i < q; i++) {// generates the specified number of coins
-//			c.add(new Quarter());
-//		}
-//
-//		q = r.nextInt(range / 4 + 1);
-//		for (int i = 0; i < q; i++) {
-//			c.add(new Dime());
-//		}
-//
-//		q = r.nextInt(range / 4 + 1);
-//		for (int i = 0; i < q; i++) {
-//			c.add(new Nickel());
-//		}
-//
-//		q = r.nextInt(range / 4 + 1 + range % 4);// pennies get the remainder of any range that cannot divide into 4
-//													// evenly
-//		for (int i = 0; i < q; i++) {
-//			c.add(new Penny());
-//		}
-//		if (c.size() < Settings.getLowerBound()) {// if there are too few coins it is filled in by each coin until the
-//													// min bound is reached
-//			for (int i = c.size(); i <= Settings.getLowerBound(); i++) {
-//				if (i % 4 == 0) {
-//					c.add(new Quarter());
-//				} else if (i % 3 == 0) {
-//					c.add(new Dime());
-//				} else if (i % 2 == 0) {
-//					c.add(new Nickel());
-//				} else
-//					c.add(new Penny());
-//			}
-//			Collections.sort(c, Collections.reverseOrder());
-////			c = coinSort(c);// puts the coins in order
-////			coinSort(c, 0, c.size() - 1);
-//		}
 
 		Collections.sort(c, Collections.reverseOrder());
 		return new CoinQuestion(c);
@@ -158,42 +111,6 @@ public class QuestionGenerator {
 		}
 		return arr;
 	}
-
-	/*
-	 * private static void coinMerge(ArrayList<Coin> c, int start, int mid, int end)
-	 * { // Find sizes of two subarrays to be merged int n1 = mid - start + 1; int
-	 * n2 = end - mid;
-	 * 
-	 * Create temp arrays // int L[] = new int [n1]; // int R[] = new int [n2];
-	 * 
-	 * ArrayList<Coin> L = new ArrayList<>(n1); ArrayList<Coin> R = new
-	 * ArrayList<>(n2);
-	 * 
-	 * Copy data to temp arrays for (int i = 0; i < n1; ++i) L.set(i, c.get(start +
-	 * i)); for (int j = 0; j < n2; ++j) R.set(j, c.get(mid + 1 + j));
-	 * 
-	 * Merge the temp arrays
-	 * 
-	 * // Initial indexes of first and second subarrays int i = 0, j = 0;
-	 * 
-	 * // Initial index of merged subarray array int k = end; while (i < n1 && j <
-	 * n2) { if (L.get(i).getValue() <= R.get(j).getValue()) { c.set(k, L.get(i));
-	 * // arr[k] = L[i]; i++; } else { c.set(k, R.get(j)); // arr[k] = R[j]; j++; }
-	 * k++; }
-	 * 
-	 * Copy remaining elements of L[] if any while (i < n1) { c.set(k, L.get(i)); //
-	 * arr[k] = L[i]; i++; k++; }
-	 * 
-	 * Copy remaining elements of R[] if any while (j < n2) { c.set(k, R.get(j)); //
-	 * arr[k] = R[j]; j++; k++; } }
-	 * 
-	 * private static void coinSort(ArrayList<Coin> c, int l, int r) { if (l < r) {
-	 * // Find the middle point int m = (l + r) / 2;
-	 * 
-	 * // Sort first and second halves coinSort(c, l, m); coinSort(c, m + 1, r);
-	 * 
-	 * // Merge the sorted halves coinMerge(c, l, m, r); } }
-	 */
 
 	public static Question nextQuestion() throws AttributeNotFoundException {
 		Random r = new Random();
@@ -255,19 +172,7 @@ public class QuestionGenerator {
 			int cJ = r.nextInt(100);
 			return new MoneyQuestion(i, cI, j, cJ, op);
 		case FRACTION:
-			int dI, dJ;
-
-			if (Settings.isFirstLarger()) {
-				int tempRange = Settings.getUpperBound() - i + 1;
-				dI = r.nextInt(tempRange) + i;
-				range = Settings.getUpperBound() - j + 1;
-				dJ = r.nextInt(tempRange) + j;
-			} else {
-				dI = r.nextInt(range) + Settings.getLowerBound();
-				dJ = r.nextInt(range) + Settings.getLowerBound();
-			}
-
-			return new FractionQuestion(i, dI, j, dJ, op);
+			return nextFractionQuestion(r, range, i, j, op);
 		case TIME:
 			j = r.nextInt(60);
 			int t = r.nextInt(Math.min(240, i * 60 + j));
@@ -284,7 +189,6 @@ public class QuestionGenerator {
 			return new SimpleFractionQuestion(n, d, '÷');
 		case DATE:
 			int year = (r.nextInt(21) - 10) + Integer.parseInt(Year.now().toString());
-//			System.out.println(year);
 			Month mon = Month.of(r.nextInt(12) + 1);
 			int day = r.nextInt(mon.length(Year.isLeap(year))) + 1;
 
@@ -292,7 +196,6 @@ public class QuestionGenerator {
 			int d1 = r.nextInt(ld1.lengthOfYear() - 1) * 3 + 1;
 
 			return new DateQuestion(ld1, d1, op);
-//			System.out.println(q);
 		case RECTANGLE:
 			return new RectangleQuestion(i, j);
 		case CIRCLE:
@@ -302,14 +205,12 @@ public class QuestionGenerator {
 				i = r.nextInt(range - 1) + Settings.getLowerBound() + 1;
 				j = r.nextInt(range) + Settings.getLowerBound();
 				int l = r.nextInt(range - 1) + Settings.getLowerBound() + 1;
-//System.out.println('l');
 				return new TriangleQuestion(i, j, l);
 			} catch (ArithmeticException ae) {// likely better way to do
 				reps++;
 				if (reps > 200) {
 					throw new AttributeNotFoundException("Triangle cannot be made");
 				}
-//				System.out.println('l');
 				return nextQuestion();
 			}
 		case PERCENT:
@@ -329,5 +230,23 @@ public class QuestionGenerator {
 		default:
 			return new NumberQuestion(i, j, op);
 		}
+	}
+
+	private static Question nextFractionQuestion(Random r, int range, int i, int j, char op) {
+		int dI, dJ;
+
+		if (Settings.isFirstLarger()) {
+			int tempRange = Settings.getUpperBound() - i + 1;
+			dI = r.nextInt(tempRange) + i;
+			tempRange = Settings.getUpperBound() - j + 1;
+			dJ = r.nextInt(tempRange) + j;
+		} else {
+			dI = r.nextInt(range) + Settings.getLowerBound();
+			dJ = r.nextInt(range) + Settings.getLowerBound();
+		}
+		if (dI == i || dJ == j)
+			return nextFractionQuestion(r, range, i, j, op);
+		else
+			return new FractionQuestion(i, dI, j, dJ, op);
 	}
 }

@@ -1,4 +1,5 @@
 package Questions;
+
 public abstract class Question extends Object {
 
 	private char operator;
@@ -23,7 +24,7 @@ public abstract class Question extends Object {
 	 * 
 	 * @return the solution
 	 */
-	abstract Object calcSolution();
+	protected abstract Object calcSolution();
 
 	public char getOperator() {
 		return operator;

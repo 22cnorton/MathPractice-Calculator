@@ -1,4 +1,5 @@
 package Questions;
+
 import java.time.*;
 
 public class TimeQuestion extends Question {
@@ -24,10 +25,6 @@ public class TimeQuestion extends Question {
 		}
 		return t1.plusMinutes(minutes);
 	}
-
-//	public LocalTime getTimeSolution() {
-//		return calcSolution();
-//	}
 
 	public String toString() {
 		switch (getOperator()) {

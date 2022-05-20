@@ -9,14 +9,8 @@ public enum ProblemTypes {// IMPORTANT calcs must follow correct naming scheme
 	private ProblemTypes(int scale) {
 		this.scale = scale;
 	}
-
-	/*
-	 * original order
-	 */
-
-	/*
-	 * NUMBERS(1), MONEY(1), FRACTION(4), COINS(2), TIME(3), SEQUENCE(1),
-	 * SIMPLIFY_FRACTION(3), DATE(3), RECTANGLE(2), CIRCLE(2), TRIANGLE(2),
-	 * TRAPEZOID(2), PERCENT(4), CHANGE(3), PRIME(2);
-	 */
+	
+	 public String toString() {
+		 return super.toString().replace('_', '\s');
+	 }
 }

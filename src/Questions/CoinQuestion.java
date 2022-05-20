@@ -1,4 +1,5 @@
 package Questions;
+
 import java.util.ArrayList;
 
 import Money.Coin;
@@ -11,10 +12,10 @@ public class CoinQuestion extends Question {
 	}
 
 	@Override
-	Object calcSolution() {
+	protected Object calcSolution() {
 		int total = 0;
 		for (Coin c : coins) // gets the correct answer
-			total += c.getValue()*100;
+			total += c.getValue() * 100;
 		return total;
 	}
 
@@ -37,13 +38,13 @@ public class CoinQuestion extends Question {
 	public Coin get(int index) {
 		return coins.get(index);
 	}
-	
+
 	public String toString() {
-		String str="";
-		for(Coin c:coins) {
-			str+=c.toString()+", ";
+		String str = "";
+		for (Coin c : coins) {
+			str += c.toString() + ", ";
 		}
-		return str.substring(0,str.length()-2);
+		return str.substring(0, str.length() - 2);
 	}
 
 }

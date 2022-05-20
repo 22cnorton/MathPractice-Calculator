@@ -1,4 +1,5 @@
 package Questions;
+
 import Main.Settings;
 
 public class RectangleQuestion extends ShapeQuestion {
@@ -16,13 +17,13 @@ public class RectangleQuestion extends ShapeQuestion {
 		width = w;
 	}
 
-	@Override protected
-	double getArea() {
+	@Override
+	protected double getArea() {
 		return length * width;
 	}
 
-	@Override protected
-	double getPerimeter() {
+	@Override
+	protected double getPerimeter() {
 		return length * 2 + width * 2;
 	}
 

@@ -8,7 +8,7 @@ public abstract class ShapeQuestion extends Question {
 		super();
 	}
 
-	Object calcSolution() {
+	protected Object calcSolution() {
 		if (Settings.isFirstLarger()) {
 			return getArea();
 		} else {

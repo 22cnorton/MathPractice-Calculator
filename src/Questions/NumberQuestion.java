@@ -45,7 +45,7 @@ public class NumberQuestion extends Question {
 	}
 
 	@Override
-	Object calcSolution() {
+	protected Object calcSolution() {
 		switch (getOperator()) {
 		case '+':
 			return (double) num1 + num2;

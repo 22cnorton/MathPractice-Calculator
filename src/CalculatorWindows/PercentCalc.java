@@ -1,4 +1,5 @@
 package CalculatorWindows;
+
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
@@ -43,7 +44,7 @@ public class PercentCalc extends CalculatorWindow {
 		}
 		spacer.setHorizontalAlignment(JLabel.LEFT);
 	}
-	Timer t1 = new Timer(500, new ActionListener() {
+	private Timer t1 = new Timer(500, new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -57,19 +58,33 @@ public class PercentCalc extends CalculatorWindow {
 
 	private String getAnswer() {
 		try {
-			int num = Integer.parseInt(this.num.getText());
-			int percent = Integer.parseInt(this.percent.getText());
+			long num = Long.parseLong(this.num.getText());
+			long percent = Long.parseLong(this.percent.getText());
 			if (percent <= 0)
 				throw new NumberFormatException("No negative percent");
-			double answer = num * percent * 0.01;
-
-			DecimalFormat dec = new DecimalFormat("#,##0.###");
-			return dec.format(answer);
+			long answer = Math.multiplyExact(num, percent);
+//			System.out.println(answer);
+			long tempVal = Math.multiplyExact(num, answer);
+			if (tempVal < 0)
+				throw new NumberFormatException("percent too large");
+			return formatAnswer(answer);
 		} catch (NumberFormatException nfe) {
-			if (nfe.getMessage().equals("No negative percent"))
-				return StringUtils.capitalize(nfe.getMessage());
+			if (nfe.getMessage().contains("percent"))
+				return StringUtils.properCase(nfe.getMessage());
 			return "Invalid Inputs";
+		} catch (ArithmeticException ae) {
+			return "Numbers Too Large";
 		}
+	}
+
+	private String formatAnswer(long answer) {
+		int decimals = (int) (answer % 100);
+		answer /= 100;
+		if (decimals < 0)
+			throw new NumberFormatException("Percent Too Big");
+		if (decimals % 10 == 0)
+			decimals /= 10;
+		return (answer + "." + decimals);
 	}
 
 	public PercentCalc(JFrame arg0) {

@@ -1,4 +1,5 @@
 package CalculatorWindows;
+
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.util.Hashtable;
@@ -25,13 +26,9 @@ public class SequenceCalc extends CalculatorWindow {
 
 	private JTextField startinglabel = p1.addTextField("Starting Number", 1, 1, 1, 1),
 			countByLabel = p1.addTextField("Counting By", 1, 3, 1, 1),
-			seqTermCount = p1.addTextField("Number of Terms", GridBagConstraints.SOUTH,3, 2, 1, 1);
+			seqTermCount = p1.addTextField("Number of Terms", GridBagConstraints.SOUTH, 3, 2, 1, 1);
 	private JTextField output = p2.addTextField("0", GridBagConstraints.CENTER, 1, 1, 1, 1);
 	private JTextField[] labels = { startinglabel, countByLabel, output, seqTermCount };
-
-//	private JSeparator vertSep = p1.addSeparator(false,GridBagConstraints.NORTHWEST, 1, 2, 1, 3),
-//			horzSep = p1.addSeparator(true, GridBagConstraints.PAGE_END, 3, 1, 3, 1);
-//	private JSeparator[] seps = { vertSep, horzSep };
 
 	private JSpinner startingInput = p1.addSpinner(2, 1, 1, 1), countBy = p1.addSpinner(2, 3, 1, 1);
 	private JSpinner[] spinners = { startingInput, countBy };
@@ -41,11 +38,7 @@ public class SequenceCalc extends CalculatorWindow {
 	private JSlider iterations = p1.addSlider(2, 14, 2, 4, 2, 1, 1);
 
 	public void buttonClicked(JButton buttonObj) {
-		/*
-		 * if (buttonObj == enter) { System.out .println(findSeq((int)
-		 * startingInput.getValue(), (int) countBy.getValue(), iterations.getValue()));
-		 * } else
-		 */if (buttonObj == exit) {
+		if (buttonObj == exit) {
 			dispose();
 		}
 	}
@@ -54,15 +47,11 @@ public class SequenceCalc extends CalculatorWindow {
 		String str = "";
 		if (countBy == 0)
 			return "Cannot count by zero";
-//		for (int i = 1; countBy > 0 ? i <= iters * countBy : i >= iters * countBy; i += countBy)
-//			str += (i * start) + ", ";
 		int sign = Integer.signum(countBy);
 		for (int i = start; i * sign < (iters * countBy + start) * sign; i += countBy) {
-//			System.out.println(i);
 			str += Integer.toString(i) + ", ";
 
 		}
-//return str;
 		return (str.length() > 0) ? str.substring(0, str.length() - 2) : "error";
 	}
 
@@ -72,8 +61,6 @@ public class SequenceCalc extends CalculatorWindow {
 		p1.setOpaque(false);
 		p2.setOpaque(false);
 		p3.setOpaque(false);
-//		p1.setBackground(Color.DARK_GRAY);
-//		p2.setBackground(Color.gray);
 
 		for (JTextField j : labels) {
 			if (j != output) {
@@ -87,18 +74,6 @@ public class SequenceCalc extends CalculatorWindow {
 		}
 		startingInput.setValue(1);
 		countBy.setValue(2);
-//		Hashtable<Integer, JLabel> dic = new Hashtable<Integer, JLabel>();
-//
-////		int temp=2+3*(n-1);
-//		int count = 1;
-//		for (int i = iterations.getMinimum(); i <= iterations.getMaximum(); i++) {
-//			if ((iterations.getMinimum() + 3 * (count - 1)) % i == 0) {
-//				dic.put(i, new JLabel(Integer.toString(i)));
-//				dic.get(i).setForeground(Color.white);
-//				count++;
-////				System.out.println(i);
-//			}
-//		}
 		Hashtable<Integer, JLabel> dic = new Hashtable<Integer, JLabel>();
 
 		int rng = iterations.getMaximum() - iterations.getMinimum();
@@ -133,16 +108,10 @@ public class SequenceCalc extends CalculatorWindow {
 		};
 		iterations.addChangeListener(lis);
 		iterations.setValue(iterations.getMaximum() / 2 + 1);
-		/*
-		 * for (JSeparator j : seps) { j.setBackground(Color.gray);
-		 * j.setForeground(Color.gray); }
-		 */
 
 		for (JSpinner j : spinners) {
 			((JSpinner.DefaultEditor) j.getEditor()).getTextField().setHorizontalAlignment(JTextField.CENTER);
 			j.addChangeListener(lis);
-//			((SpinnerNumberModel) j.getModel()).setMaximum(10000);
-//			((SpinnerNumberModel) j.getModel()).setMinimum(-10000);
 
 			j.addChangeListener(new ChangeListener() {
 
@@ -160,5 +129,4 @@ public class SequenceCalc extends CalculatorWindow {
 		}
 		validate();
 	}
-
 }

@@ -1,4 +1,5 @@
 package CalculatorWindows;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
@@ -65,15 +66,6 @@ public class CoinsCalc extends CalculatorWindow {
 			dispose();
 		} else {// checks which button was clicked and alters the total by that amount
 			int amount = 0;
-			/*
-			 * switch (buttonObj) { case penny: amount = 1; break; case nickel: amount = 5;
-			 * break; case dime: amount = 10; break; case quarter: amount = 25; break; case
-			 * halfDollar: amount = 50; break; case dollar: amount = 100; break; case
-			 * twoDollar: amount = 200; break; case fiveDollar: amount = 500; break; case
-			 * tenDollar: amount = 1000; break; case twentyDollar: amount = 2000; break;
-			 * case fiftyDollar: amount = 5000; break; case hundredDollar: amount = 10000;
-			 * break; }
-			 */
 
 			if (buttonObj == penny)
 				amount = 1;
@@ -123,11 +115,7 @@ public class CoinsCalc extends CalculatorWindow {
 	}
 
 	public CoinsCalc(JFrame arg0) {// constructor
-		super(arg0,"Coinculator",1200,500,arg0);
-		/*
-		 * setTitle("Coinculator"); getContentPane().setBackground(Color.darkGray);
-		 * setSize(1200, 500); setLocationRelativeTo(arg0);
-		 */
+		super(arg0, "Coinculator", 1200, 500, arg0);
 		p1.setOpaque(false);
 		p2.setOpaque(false);
 		p3.setOpaque(false);
@@ -142,9 +130,6 @@ public class CoinsCalc extends CalculatorWindow {
 
 		final String STR = "Coins/pictures/";// the image address that is the same for all the coins
 
-		/*
-		 * sets the proper image for each button
-		 */
 		final String[] END = { "penny.png", "dime.png", "oneDollar.png", "fiveDollar.png", "twentyDollar.png",
 				"hundredDollar.png", "nickel.png", "quarter.png", "halfDollar.png", "twoDollar.png", "tenDollar.png",
 				"fiftyDollar.png" };
@@ -152,17 +137,6 @@ public class CoinsCalc extends CalculatorWindow {
 		for (int i = 0; i < buttons.length; i++) {
 			buttons[i].setIcon(new ImageIcon(STR + END[i]));
 		}
-
-		/*
-		 * penny.setIcon(new ImageIcon(STR + END[0])); dime.setIcon(new ImageIcon(STR +
-		 * END[1])); dollar.setIcon(new ImageIcon(STR + END[2])); fiveDollar.setIcon(new
-		 * ImageIcon(STR + END[3])); twentyDollar.setIcon(new ImageIcon(STR + END[4]));
-		 * hundredDollar.setIcon(new ImageIcon(STR + END[5])); nickel.setIcon(new
-		 * ImageIcon(STR + END[6])); quarter.setIcon(new ImageIcon(STR + END[7]));
-		 * halfDollar.setIcon(new ImageIcon(STR + END[8])); twoDollar.setIcon(new
-		 * ImageIcon(STR + END[9])); tenDollar.setIcon(new ImageIcon(STR + END[10]));
-		 * fiftyDollar.setIcon(new ImageIcon(STR + END[11]));
-		 */
 
 		FocusTraversalPolicy fTP = new FocusTraversalPolicy() {
 
@@ -196,16 +170,6 @@ public class CoinsCalc extends CalculatorWindow {
 				else if (aComponent == clear)
 					return subtract;
 				return null;
-				/*
-				 * if (aComponent == dime) { return penny; } else if (aComponent == quarter) {
-				 * return nickel; } else if (aComponent == halfDollar) { return quarter; } else
-				 * if (aComponent == dollar) { return dime; } else if (aComponent == twoDollar)
-				 * { return halfDollar; } else if (aComponent == fiveDollar) { return dollar; }
-				 * else if (aComponent == tenDollar) { return twoDollar; } else if (aComponent
-				 * == twentyDollar) { return fiveDollar; } else if (aComponent == fiftyDollar) {
-				 * return tenDollar; } else if (aComponent == hundredDollar) { return
-				 * twentyDollar; }
-				 */
 			}
 
 			@Override
@@ -222,17 +186,6 @@ public class CoinsCalc extends CalculatorWindow {
 				else if (aComponent == clear)
 					return penny;
 				return null;
-				/*
-				 * if (aComponent == penny) { return dime; } else if (aComponent == nickel) {
-				 * return quarter; } else if (aComponent == dime) { return dollar; } else if
-				 * (aComponent == quarter) { return halfDollar; } else if (aComponent ==
-				 * halfDollar) { return twoDollar; } else if (aComponent == dollar) { return
-				 * fiveDollar; } else if (aComponent == twoDollar) { return tenDollar; } else if
-				 * (aComponent == fiveDollar) { return twentyDollar; } else if (aComponent ==
-				 * tenDollar) { return fiftyDollar; } else if (aComponent == twentyDollar) {
-				 * return hundredDollar; } else if (aComponent == hundredDollar) { return
-				 * nickel; }
-				 */
 			}
 		};
 
@@ -288,19 +241,6 @@ public class CoinsCalc extends CalculatorWindow {
 
 			}
 		};
-		/*
-		 * Border bord=subtract.getBorder(); int sz=3; LineBorder border1 = new
-		 * LineBorder(Color.lightGray,sz); EmptyBorder border2 = new
-		 * EmptyBorder(3-sz,22-sz,5-sz,22-sz); Border newBorder =
-		 * BorderFactory.createCompoundBorder(border1, border2);
-		 * subtract.addFocusListener(new FocusListener() {
-		 * 
-		 * @Override public void focusLost(FocusEvent e) { JCheckBox c = (JCheckBox)
-		 * e.getComponent(); c.setBorder(bord); }
-		 * 
-		 * @Override public void focusGained(FocusEvent e) { JCheckBox c = (JCheckBox)
-		 * e.getComponent(); c.setBorder(newBorder); } });
-		 */
 
 		setFocusTraversalPolicy(fTP);
 
@@ -312,7 +252,6 @@ public class CoinsCalc extends CalculatorWindow {
 			b.setForeground(Color.white);
 			b.addKeyListener(key);
 			b.addFocusListener(foc);
-//			b.setFocusTraversalPolicy(fTP);
 		}
 	}
 }

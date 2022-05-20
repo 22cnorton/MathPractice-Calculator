@@ -1,4 +1,5 @@
 package CalculatorWindows;
+
 import java.awt.Color;
 import java.awt.Component;
 
@@ -10,13 +11,6 @@ public abstract class CalculatorWindow extends GBDialog {
 
 	private static final long serialVersionUID = -1425929754832586412L;
 
-	/*
-	 * private void calcWindow(JFrame arg0, String title, int width, int height,
-	 * Component relative) {
-	 * 
-	 * }
-	 */
-	
 	public void setLocationRelativeTo(Component c) {
 		super.setLocationRelativeTo(c);
 	}
@@ -35,10 +29,5 @@ public abstract class CalculatorWindow extends GBDialog {
 
 	public CalculatorWindow(JFrame arg0, String title, int width, int height, Component relative) {
 		this(arg0, title, Color.darkGray, width, height, relative);
-//		super(arg0);
-//		calcWindow(arg0, title, width, height, relative);
-
-//		for (JPanel p : panels)
-//			p.setOpaque(false);
 	}
 }

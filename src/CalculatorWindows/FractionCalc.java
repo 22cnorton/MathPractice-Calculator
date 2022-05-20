@@ -29,17 +29,8 @@ public class FractionCalc extends CalculatorWindow {
 	private GBPanel p1 = addPanel(1, 2, 1, 1), p2 = addPanel(2, 1, 3, 1), p3 = addPanel(3, 1, 3, 1),
 			p4 = p1.addPanel(1, 1, 1, 3), p5 = p1.addPanel(1, 3, 1, 3);
 
-//	private GBPanel p4 = addPanel(1, 1, 1, 1), p5 = addPanel(1, 3, 1, 1);
 	private JTextField answer = p2.addTextField("5/4", GridBagConstraints.CENTER, 1, 1, 1, 1);
 
-	/*
-	 * private FocusListener foc = new FocusListener() {
-	 * 
-	 * @Override public void focusLost(FocusEvent e) {
-	 * answer.setText(calcFrac().toString()); }
-	 * 
-	 * @Override public void focusGained(FocusEvent e) { // Unused } };
-	 */
 
 	private KeyListener key = new KeyAdapter() {
 		public void keyPressed(KeyEvent e) {
@@ -75,12 +66,6 @@ public class FractionCalc extends CalculatorWindow {
 		sign.addItem('*');
 		sign.addItem('÷');
 		sign.addKeyListener(key);
-		/*
-		 * sign.addActionListener(new ActionListener() {
-		 * 
-		 * @Override public void actionPerformed(ActionEvent e) {
-		 * answer.setText(calcFrac().toString()); } });
-		 */
 	}
 
 	private ArrayList<Component> comps = new ArrayList<>(

@@ -31,8 +31,6 @@ public class MainQuestionWindow extends QuestionWindow {
 	private JTextField question = p1.addTextField("Question Here", 2, 1, 1, 1), input = p1.addTextField("", 3, 1, 1, 1),
 			scoreField = p1.addTextField("Score: 0", 1, 1, 1, 1);
 
-//	private JSpinner spinny=p3.addSpinner(3, 1, 1, 1);
-
 	@SuppressWarnings("rawtypes")
 	private JComboBox dayField = p3.addComboBox(1, 2, 1, 1), monthField = p3.addComboBox(1, 1, 1, 1),
 			yearField = p3.addComboBox(1, 3, 1, 1);
@@ -41,27 +39,8 @@ public class MainQuestionWindow extends QuestionWindow {
 			no = p4.addRadioButton("NO", GridBagConstraints.CENTER, 1, 2, 1, 1);
 	private JRadioButton[] bttns = { yes, no };
 	private ButtonGroup bG = new ButtonGroup();
-	/*
-	 * private JButton enter = p2.addButton("Submit", 1, 1, 1, 1), exit =
-	 * p2.addButton("Exit", 2, 1, 2, 1), skip = p2.addButton("Skip", 1, 2, 1, 1);
-	 */
 
-//	private Question q;
 	private int tempLow;
-//	private int txtBoxMod;
-
-//	private int count = 0, score = 0, reps;
-//	private boolean isComplete = false;
-//	@Override
-	/*
-	 * public void clearSolutionField() { if (getQ() instanceof TimeQuestion q) {
-	 * int day = ((LocalDate) q.getSolution()).getDayOfMonth();
-	 *
-	 * dayField.setSelectedIndex(day); monthField.setSelectedIndex(0);
-	 * yearField.setSelectedIndex(0);
-	 *
-	 * } else { input.setText("0.00001"); } }
-	 */
 
 	@Override
 	Object parse() {
@@ -98,37 +77,6 @@ public class MainQuestionWindow extends QuestionWindow {
 		input.grabFocus();
 	}
 
-	/*
-	 * @Override void exitPressed() { ConfirmationDialog c = new
-	 * ConfirmationDialog(getArg0(), this, "Are You Sure You Want to Quit?");
-	 * c.setVisible(true); if (c.getDlgCloseIndicator().equals("Yes")) dispose(); }
-	 */
-
-	/*
-	 * void skipPressed() { try { if (getScore() <= 0) throw new
-	 * NumberFormatException("Score less than 0"); setScore(getScore() - 1);
-	 * update(false); } catch (NumberFormatException e) { if
-	 * (e.getMessage().equals("Score less than 0"))
-	 * autoCloseMsgBox("Skip costs 1 point"); } }
-	 */
-	/*
-	 * @Override public void buttonClicked(JButton buttonObj) { if (buttonObj ==
-	 * getEnterButton()) {
-	 *
-	 * } else if (buttonObj == getExitButton()) {
-	 *
-	 * } else if (buttonObj == getSkipButton()) {
-	 *
-	 * } }
-	 */
-
-//	public boolean isComplete() {
-//		return isComplete;
-//	}
-//
-//	public int getScore() {
-//		return score;
-//	}
 	private void nextQuestion() {
 		try {
 			setQ(QuestionGenerator.nextQuestion());
@@ -215,7 +163,7 @@ public class MainQuestionWindow extends QuestionWindow {
 	}
 
 	@SuppressWarnings("unchecked")
-	public MainQuestionWindow(JFrame arg0){
+	public MainQuestionWindow(JFrame arg0) {
 		super(arg0);
 		setTitle("Questions");
 		getContentPane().setBackground(Color.darkGray);
@@ -229,9 +177,6 @@ public class MainQuestionWindow extends QuestionWindow {
 		p3.setOpaque(false);
 		p4.setOpaque(false);
 		addButtons(p2);
-		/*
-		 * setEnterButton(p2); setExitButton(p2); setSkipButton(p2);
-		 */
 
 		nextQuestion();
 		if (Settings.isDevMode())
@@ -283,15 +228,6 @@ public class MainQuestionWindow extends QuestionWindow {
 		};
 		monthField.addActionListener(dates);
 		yearField.addActionListener(dates);
-
-		/*
-		 * KeyAdapter enterLis = new KeyAdapter() {
-		 *
-		 * @Override public void keyPressed(KeyEvent e) { if (e.getKeyCode() ==
-		 * KeyEvent.VK_ENTER) { buttonClicked(getEnterButton()); } else if
-		 * (e.getKeyCode() == KeyEvent.VK_ESCAPE) buttonClicked(getExitButton()); } };
-		 */
-//		getSkipButton().setToolTipText("Skip the current question for the cost of 1 point");
 
 		input.addKeyListener(getKey());
 		monthField.addKeyListener(getKey());

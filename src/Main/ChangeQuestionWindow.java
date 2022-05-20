@@ -1,4 +1,5 @@
 package Main;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.io.InvalidClassException;
@@ -40,26 +41,7 @@ public class ChangeQuestionWindow extends QuestionWindow {
 	private JSpinner fiveSpinner = p2.addSpinner(2, 1, 1, 1), oneSpinner = p2.addSpinner(2, 2, 1, 1),
 			quarterSpinner = p2.addSpinner(2, 3, 1, 1), dimeSpinner = p2.addSpinner(2, 4, 1, 1),
 			nickelSpinner = p2.addSpinner(2, 5, 1, 1), pennySpinner = p2.addSpinner(2, 6, 1, 1);
-
-//	private JLabel[] pics = { fiveDollar, oneDollar, quarter, dime, nickel, penny };
 	private JSpinner[] spin = { fiveSpinner, oneSpinner, quarterSpinner, dimeSpinner, nickelSpinner, pennySpinner };
-
-	/*
-	 * private JButton enter = p3.addButton("Enter", 1, 1, 1, 1), exit =
-	 * p3.addButton("Exit", 2, 1, 1, 1);
-	 */
-//	private ChangeQuestion q;
-
-	/*
-	 * @Override public void checkAnswer() { super.checkAnswer(); }
-	 */
-
-	/*
-	 * @Override public void clearSolutionField() { for (JSpinner spin : spin) {
-	 * spin.setValue(0); }
-	 * 
-	 * }
-	 */
 
 	public boolean isExactChange() throws InvalidClassException {
 		LinkedHashMap<Money, Integer> temp = getCoinsMap();
@@ -73,7 +55,6 @@ public class ChangeQuestionWindow extends QuestionWindow {
 			HashSet<?> set1 = new HashSet<>(temp.values());
 			HashSet<?> set2 = new HashSet<>(answer.values());
 
-//			System.out.println(set1.equals(set2));
 			return set1.equals(set2);
 		} catch (InvalidClassException e) {
 			e.printStackTrace();
@@ -89,7 +70,7 @@ public class ChangeQuestionWindow extends QuestionWindow {
 				autoCloseMsgBox("The best way to make that change:\n" + getCoinsList(), 250, 250, 1500);
 			}
 		} catch (InvalidClassException e1) {
-			
+
 			e1.printStackTrace();
 		}
 		for (JSpinner j : spin)
@@ -110,7 +91,6 @@ public class ChangeQuestionWindow extends QuestionWindow {
 		if (decReps)
 			decReps();
 		((JSpinner.DefaultEditor) fiveSpinner.getEditor()).getTextField().grabFocus();
-//		oneSpinner.grabFocus();
 	}
 
 	@Override
@@ -120,46 +100,9 @@ public class ChangeQuestionWindow extends QuestionWindow {
 				+ (int) nickelSpinner.getValue() * 5 + (int) pennySpinner.getValue();
 		double solution = dollarAmount + (centsAmount / 100.0);
 
-//		try {
-//			LinkedHashMap<Money, Integer> answer = getCoinsMap();
-//			Money[] m = { new Bill("Five", 5), new Bill("One", 1), new Quarter(), new Dime(), new Nickel(),
-//					new Penny() };
-//			for (int i = 0; i < spin.length; i++) {
-//				answer.put(m[i], (int) spin[i].getValue());
-//			}
-//		} catch (InvalidClassException e) {
-//			e.printStackTrace();
-//		}
-//
-
 		DecimalFormat dec = new DecimalFormat("#0.00");
-//		System.out.println(dec.format(solution));
 		return Double.parseDouble(dec.format(solution));
 	}
-
-	/*
-	 * @Override void exitPressed() { ConfirmationDialog c = new
-	 * ConfirmationDialog(getArg0(), this, "Are You sure You want to Quit?");
-	 * c.setVisible(true); if (c.getDlgCloseIndicator().equals("Yes")) dispose(); }
-	 */
-
-	/*
-	 * @Override void skipPressed() { try { if (getScore() <= 0) throw new
-	 * NumberFormatException("Score less than 0"); setScore(getScore() - 1);
-	 * update(false); } catch (NumberFormatException e) { if
-	 * (e.getMessage().equals("Score less than 0"))
-	 * autoCloseMsgBox("Skip costs 1 point");
-	 *
-	 * } }
-	 */
-	/*
-	 * @Override public void buttonClicked(JButton buttonObj) { if (buttonObj ==
-	 * getEnterButton()) { checkAnswer(); } else if (buttonObj == getExitButton()) {
-	 *
-	 * }else if(buttonObj==getSkipButton()){
-	 *
-	 * } }
-	 */
 
 	public ChangeQuestionWindow(JFrame theMainFrm) {
 		super(theMainFrm);
@@ -174,9 +117,6 @@ public class ChangeQuestionWindow extends QuestionWindow {
 		p3.setOpaque(false);
 
 		addButtons(p3);
-		/*
-		 * setEnterButton(p3); setExitButton(p3); setSkipButton(p3);
-		 */
 
 		setQ(QuestionGenerator.nextChangeQuestion());
 		if (Settings.isDevMode()) {
@@ -202,20 +142,15 @@ public class ChangeQuestionWindow extends QuestionWindow {
 				int val = (int) s.getValue();
 				if (val < 0)
 					s.setValue(0);
-//				s.ena
-//				System.out.println(val);
 			}
 		};
 
 		for (JSpinner j : spin) {
-//			j.boun
 			j.addChangeListener(cL);
-//			j.addKeyListener(key);
 			Component editor = j.getEditor();
 			JSpinner.DefaultEditor spinnerEditor = (JSpinner.DefaultEditor) editor;
 			spinnerEditor.getTextField().setHorizontalAlignment(SwingConstants.CENTER);
 			spinnerEditor.getTextField().addKeyListener(getKey());
-//			spinnerEditor.getTextField().setEditable(false);
 		}
 
 		final String STR = "Coins/pictures/";// the image address that is the same for all the coins
@@ -232,9 +167,6 @@ public class ChangeQuestionWindow extends QuestionWindow {
 			j.setFocusable(false);
 		}
 
-//		getEnterButton().addKeyListener(key);
-//		getExitButton().addKeyListener(key);
-
 		scoreField.setBackground(getContentPane().getBackground());
 		scoreField.setEditable(false);
 		scoreField.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -242,5 +174,4 @@ public class ChangeQuestionWindow extends QuestionWindow {
 		scoreField.setFocusable(false);
 		scoreField.setBorder(null);
 	}
-
 }

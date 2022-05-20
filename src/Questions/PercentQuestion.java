@@ -12,7 +12,7 @@ public class PercentQuestion extends Question {
 	}
 
 	@Override
-	Object calcSolution() {
+	protected Object calcSolution() {
 		double d = num * percent * 0.01;
 		String text = Double.toString(Math.abs(d));
 		int integerPlaces = text.indexOf('.');

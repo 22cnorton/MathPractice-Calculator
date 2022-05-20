@@ -27,7 +27,7 @@ public class DateQuestion extends Question {
 	}
 
 	@Override
-	Object calcSolution() {
+	protected Object calcSolution() {
 		LocalDate tmp;
 		switch (getOperator()) {
 		case '-':
@@ -37,10 +37,6 @@ public class DateQuestion extends Question {
 		}
 		return tmp.format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"));
 	}
-
-//	public String getSolutionFormated() {
-//		return ((LocalDate) calcSolution()).format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"));
-//	}
 
 	public String toString() {
 		DateTimeFormatter d = DateTimeFormatter.ofPattern("MMMM dd, yyyy");

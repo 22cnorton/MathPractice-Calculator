@@ -1,4 +1,5 @@
 package CalculatorWindows;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Image;
@@ -27,7 +28,6 @@ public class ChangeCalcAnswerWindow extends GBDialog {
 
 	private GBPanel p1 = addPanel(1, 1, 1, 1), p2 = addPanel(2, 1, 1, 1);
 
-//	private String[][] str;
 	private JTextField[] nums, names;
 	private JLabel[] pics;
 	private Image[] imgs;
@@ -49,14 +49,7 @@ public class ChangeCalcAnswerWindow extends GBDialog {
 		setLocationRelativeTo(c);
 
 		p1.setOpaque(false);
-//		p2.setOpaque(false);
 		p2.setBackground(Color.gray);
-//		ok.setBorder(BorderFactory.createLineBorder(Color.red,3,22, 5, 22));
-//		ok.setBorder(new AquaButtonBorder() {
-//		});
-//		ok.setContentAreaFilled(false);
-//		ok.setBackground(Color.red);
-//		ok.setBackground(Color.red);
 
 		nums = new JTextField[str.length];
 		names = new JTextField[str.length];
@@ -74,10 +67,7 @@ public class ChangeCalcAnswerWindow extends GBDialog {
 			Image img = ImageIO.read(f);
 			Image resizedImage = img.getScaledInstance(img.getWidth(null) / 2, img.getHeight(null) / 2,
 					Image.SCALE_AREA_AVERAGING);
-//			pics[i].setIcon(new ImageIcon(resizedImage));
 			imgs[i] = resizedImage;
-//			pics[i]=p1.addImageLabel(resizedImage, i+1, 3, 1, 1);
-//			throw new IOException();
 		}
 		for (JTextField j : nums) {
 			j.setBackground(getContentPane().getBackground());

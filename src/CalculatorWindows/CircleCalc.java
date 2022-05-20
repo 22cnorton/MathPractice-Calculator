@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
-public class CircleCalc extends ShapeCalc {
+public  class CircleCalc extends ShapeCalc {
 	private static final long serialVersionUID = -1046217605002073376L;
 
 	private JTextField radius = getP1().addTextField("2", GridBagConstraints.CENTER, 1, 2, 1, 1),

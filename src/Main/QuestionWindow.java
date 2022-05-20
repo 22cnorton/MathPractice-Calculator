@@ -1,4 +1,5 @@
 package Main;
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,23 +38,10 @@ public abstract class QuestionWindow extends GBDialog {// added in week
 		}
 	});
 
-	/*
-	 * private JTextField scoreField; {
-	 * scoreField.setBackground(getContentPane().getBackground());
-	 * scoreField.setEditable(false);
-	 * scoreField.setHorizontalAlignment(SwingConstants.RIGHT);
-	 * scoreField.setForeground(Color.white); scoreField.setFocusable(false);
-	 * scoreField.setBorder(null); }
-	 */
-
 	private JButton enter, exit, skip;
 	private JFrame arg0;
 	private Question q;
 	private KeyListener key;
-
-	/*
-	 * public void updateScoreText() { scoreField.setText("Score: " + getScore()); }
-	 */
 
 	public QuestionWindow(JFrame theMainFrm) {
 		super(theMainFrm);
@@ -68,7 +56,6 @@ public abstract class QuestionWindow extends GBDialog {// added in week
 			}
 		};
 		t.setRepeats(false);
-//		System.out.println(t.getDelay());
 		if (Settings.isTimed())
 			t.start();
 	}
@@ -98,7 +85,7 @@ public abstract class QuestionWindow extends GBDialog {// added in week
 
 	/**
 	 * all updates that need to be performed after the answer is checked
-	 * 
+	 *
 	 * @param decReps if the number of repetitions need to be decreased
 	 */
 	abstract void update(boolean decReps);
@@ -113,15 +100,8 @@ public abstract class QuestionWindow extends GBDialog {// added in week
 				return "non answer";
 			else
 				throw e;
-//			if (!Settings.isTimed()) {
-//			} else {
-////				clearSolutionField();
-//				buttonClicked(enter);
-//			}
 		}
 	}
-
-	// abstract void enterPressed();
 
 	@Override
 	public void buttonClicked(JButton buttonObj) {
@@ -133,8 +113,6 @@ public abstract class QuestionWindow extends GBDialog {// added in week
 			skipPressed();
 		}
 	}
-
-	// abstract void enterPressed();
 
 	public void exitPressed() {
 		t.stop();
@@ -190,25 +168,15 @@ public abstract class QuestionWindow extends GBDialog {// added in week
 				update(true);
 				col = Color.red;
 				time = 1550;
-				/*
-				 * setCount(0); for (JSpinner j : spin) { j.setValue(0); } q =
-				 * QuestionGenerator.nextChangeQuestion(); question.setText(q.toString());
-				 * decReps();
-				 */
 			}
 			autoCloseMsgBox(txt, time, col);
 		} catch (NumberFormatException e) {
-//			if (!Settings.isTimed()) {
 			if (e.getMessage().equals("Wrong Fraction Characters"))
 				autoCloseMsgBox("Fractions can only use\nintegers and /");
 			else if (e.getMessage().equals("Wrong Time Characters"))
 				autoCloseMsgBox("Time answers only uses integers and ':'");
 			else
 				autoCloseMsgBox("Must input numbers");
-//			} else {
-////				clearSolutionField();
-//				buttonClicked(enter);
-//			}
 		}
 		if (getReps() < 1) {
 			t.stop();
@@ -221,8 +189,6 @@ public abstract class QuestionWindow extends GBDialog {// added in week
 			t.restart();
 	}
 
-//	public abstract void clearSolutionField();
-
 	public JFrame getArg0() {
 		return arg0;
 	}
@@ -230,13 +196,6 @@ public abstract class QuestionWindow extends GBDialog {// added in week
 	public void setArg0(JFrame arg0) {
 		this.arg0 = arg0;
 	}
-
-	/*
-	 * public JTextField getScoreField() { return scoreField; }
-	 * 
-	 * public void setScoreField(GBPanel p) { this.scoreField =
-	 * p.addTextField("Score: 0", 1, 1, 1, 1); }
-	 */
 
 	public Object qGetSolution() {
 		return q.getSolution();

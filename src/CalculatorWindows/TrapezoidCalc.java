@@ -28,9 +28,6 @@ public class TrapezoidCalc extends ShapeCalc {
 			int h = Integer.parseInt(this.b3.getText());
 			if (b1 <= 0 || b2 <= 0 || h <= 0)
 				throw new NumberFormatException();
-//			double answer;
-//			int triB = Math.abs(b1 - b2);
-//			double hyp = Math.sqrt(Math.pow(h, 2) + Math.pow(triB, 2));
 
 			double s = Math.sqrt(Math.pow(((b1 - b2) / 2), 2) + Math.pow(h, 2));
 
