@@ -10,5 +10,4 @@ public class Bill extends Money {
 		return "Coins/pictures/" + getName().toLowerCase() + "Dollar.png";
 	}
 
-
 }
